@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  // Relative assets work for both a user/organization Pages site and a
-  // repository subpath without hard-coding the future GitHub repository name.
-  base: "./",
+  // This repository is published at zoezhuy.github.io/signal-copilot/.
+  // An explicit base keeps module and stylesheet URLs correct on GitHub Pages.
+  base: "/signal-copilot/",
   plugins: [react()],
 });

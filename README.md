@@ -84,7 +84,7 @@ npm run check
 3. 在 **Build and deployment** 中将 **Source** 选为 **GitHub Actions**。
 4. `.github/workflows/deploy.yml` 会自动测试、构建并发布 `dist` 目录。
 
-Vite 资源路径已设置为相对路径，因此不需要预先知道 GitHub 仓库名称。
+Vite 的 `base` 已设置为 `/signal-copilot/`，与当前 GitHub Pages 仓库路径保持一致。如果仓库改名，需同步更新 `vite.config.ts` 中的 `base`。
 
 ## 设计与研究文档
 
