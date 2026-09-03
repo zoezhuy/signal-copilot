@@ -89,7 +89,11 @@ export default function App() {
     : null;
 
   const content = (
-    <div className="flex min-h-[643px] w-full flex-col gap-6 px-6 py-8">
+    <div
+      className={`flex min-h-[643px] w-full min-w-0 flex-col gap-6 ${
+        platform === "mini" ? "px-4 py-6" : "px-6 py-8"
+      }`}
+    >
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col gap-1">
           <h1 className="font-heading text-xl font-bold leading-7 text-[#111827]">
@@ -115,7 +119,7 @@ export default function App() {
         ) : (
           <AnalysisPlaceholder language={language} />
         )}
-        <MethodologyPanel language={language} />
+        <MethodologyPanel language={language} compact={platform === "mini"} />
       </div>
     </div>
   );
@@ -126,7 +130,7 @@ export default function App() {
         <div
           className={
             platform === "mini"
-              ? "flex w-full max-w-[390px] flex-col overflow-hidden rounded-[2.25rem] border-8 border-[#111827] bg-[#f6f7fb] shadow-2xl"
+              ? "flex w-full max-w-[390px] min-w-0 flex-col overflow-x-hidden rounded-[2.25rem] border-8 border-[#111827] bg-[#f6f7fb] shadow-2xl"
               : "flex w-full flex-col"
           }
         >

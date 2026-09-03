@@ -5,11 +5,12 @@ import { copy } from "../i18n";
 
 type SegmentedProps = {
   children: ReactNode;
+  className?: string;
 };
 
-function SegmentedGroup({ children }: SegmentedProps) {
+function SegmentedGroup({ children, className = "" }: SegmentedProps) {
   return (
-    <div className="flex items-center gap-0.5 rounded-xl border border-[rgba(74,85,200,0.1)] bg-[#f0f1f7] p-0.5 shrink-0">
+    <div className={`flex shrink-0 items-center gap-0.5 rounded-xl border border-[rgba(74,85,200,0.1)] bg-[#f0f1f7] p-0.5 ${className}`}>
       {children}
     </div>
   );
@@ -60,7 +61,14 @@ export default function Header({
 
   return (
     <header className="w-full shrink-0 border-b border-[rgba(74,85,200,0.1)] bg-[rgba(255,255,255,0.95)] backdrop-blur-md">
-      <div className="mx-auto flex min-h-14 w-full max-w-[1280px] flex-col items-stretch justify-between gap-3 px-4 py-3 sm:flex-row sm:items-center sm:px-6">
+      <div
+        className={[
+          "mx-auto flex min-h-14 w-full max-w-[1280px] min-w-0 justify-between gap-3 px-4 py-3 sm:px-6",
+          platform === "mini"
+            ? "flex-col items-stretch"
+            : "flex-col items-stretch sm:flex-row sm:items-center",
+        ].join(" ")}
+      >
         <div className="flex shrink-0 items-center gap-3">
           <div
             className="flex size-8 items-center justify-center rounded-2xl shadow-[0_1px_1.5px_rgba(75,99,232,0.2),0_1px_1px_rgba(75,99,232,0.2)]"
@@ -81,8 +89,14 @@ export default function Header({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          <SegmentedGroup>
+        <div
+          className={
+            platform === "mini"
+              ? "flex min-w-0 flex-col items-stretch gap-2"
+              : "flex flex-wrap items-center gap-2"
+          }
+        >
+          <SegmentedGroup className={platform === "mini" ? "self-end" : ""}>
             <SegmentedButton active={language === "en"} onClick={() => setLanguage("en")}>
               EN
             </SegmentedButton>
@@ -91,7 +105,9 @@ export default function Header({
             </SegmentedButton>
           </SegmentedGroup>
 
-          <SegmentedGroup>
+          <SegmentedGroup
+            className={platform === "mini" ? "w-full [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center" : ""}
+          >
             <SegmentedButton active={mode === "candidate"} onClick={() => setMode("candidate")}>
               <User
                 className={`size-3 ${mode === "candidate" ? "text-[#4b63e8]" : "text-[#6b7280]"}`}
@@ -110,7 +126,9 @@ export default function Header({
             </SegmentedButton>
           </SegmentedGroup>
 
-          <SegmentedGroup>
+          <SegmentedGroup
+            className={platform === "mini" ? "w-full [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center" : ""}
+          >
             <SegmentedButton active={platform === "desktop"} onClick={() => setPlatform("desktop")}>
               <Monitor className="size-3" />
               {t.desktopLabel}

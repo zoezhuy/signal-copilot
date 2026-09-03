@@ -26,7 +26,13 @@ const content = {
 
 const icons = [Eye, ShieldCheck, UserCheck];
 
-export default function MethodologyPanel({ language }: { language: Language }) {
+export default function MethodologyPanel({
+  language,
+  compact = false,
+}: {
+  language: Language;
+  compact?: boolean;
+}) {
   const t = content[language];
 
   return (
@@ -35,7 +41,7 @@ export default function MethodologyPanel({ language }: { language: Language }) {
       <h2 id="methodology-heading" className="mt-1 font-heading text-lg font-bold leading-7 text-[#111827]">
         {t.heading}
       </h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className={`mt-4 grid gap-3 ${compact ? "grid-cols-1" : "sm:grid-cols-3"}`}>
         {t.items.map((item, index) => {
           const Icon = icons[index];
           return (
