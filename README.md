@@ -4,6 +4,10 @@
 
 [在线体验](https://zoezhuy.github.io/signal-copilot/) · [完整案例研究](docs/CASE_STUDY.zh-CN.md) · [信号框架](docs/SIGNAL_FRAMEWORK.md) · [负责任 AI 说明](docs/RESPONSIBLE_AI.md)
 
+[![Open live demo](https://img.shields.io/badge/Open-Live_Demo-5B5CE2?style=for-the-badge)](https://zoezhuy.github.io/signal-copilot/)
+
+![Signal Copilot 产品分析结果：信号、原文证据、证据覆盖度与跟进建议](./assets/signal-copilot-product.png)
+
 - **项目类型：** 个人作品集 / 产品概念验证
 - **个人职责：** 问题定义、用户流程、信号框架、交互设计、前端开发、测试与部署
 - **技术栈：** React 18、TypeScript、Vite、Tailwind CSS、Vitest、GitHub Actions
@@ -37,6 +41,16 @@ Signal Copilot 将这些非结构化对话整理为：
 - **下一步建议**：把结果转化为尊重、明确且可执行的跟进动作。
 
 这个项目不试图“预测一个人”，而是帮助用户更清楚地理解现有证据，并开展下一次更好的沟通。
+
+## 业务价值：帮助用户做什么决定
+
+| 用户 | 原始困境 | 产品提供的决策支持 | 人工保留的判断 |
+|---|---|---|---|
+| 求职者 | 不确定流程是积极推进、正常等待还是已经降温 | 核对是否存在明确下一步、具体时间和结束信号，并决定何时、如何跟进 | 是否继续投入求职时间、如何结合完整上下文回应 |
+| 招聘方 | Offer 沟通中的顾虑散落在多轮对话里 | 汇总薪资顾虑、竞品 Offer、入职时间不确定和流程状态，并生成待澄清事项 | 薪酬方案、沟通策略和最终人才决策 |
+| 招聘团队 | 不同成员对同一段沟通的理解不一致 | 用原文证据建立可复核的共同讨论基础 | 推翻标签、补充信息和决定后续动作 |
+
+产品价值不在于替用户下结论，而在于降低遗漏关键信号的风险、缩短对话复盘时间，并让后续沟通更具体。
 
 ## 产品如何工作
 
@@ -148,6 +162,15 @@ flowchart LR
 - **Vitest**：覆盖积极信号、风险信号、证据不足和个人信息提醒；
 - **GitHub Actions**：每次推送执行测试、类型检查和构建，并部署至 GitHub Pages。
 
+### 当前规则原型与未来 LLM 版本
+
+| 版本 | 分析方式 | 当前状态 | 适用目的 |
+|---|---|---:|---|
+| 当前公开原型 | 浏览器本地关键词规则 + 人工审阅精选案例 | 已实现 | 验证产品流程、可解释输出与安全边界 |
+| 未来 LLM 版本 | 结构化模型输出 + 证据引用 + 服务端安全控制 | 尚未实现 | 在经同意、匿名化的数据集上验证复杂语义理解 |
+
+当前演示不会把自由文本发送给模型，也不能被描述为已经上线的 LLM 招聘决策系统。未来版本只有在完成准确性、安全性、隐私和人工复核验证后才会进入产品化试验。
+
 ## 本地运行
 
 环境要求：Node.js 22.12+ 或 24+。
@@ -182,6 +205,8 @@ docs/
   SIGNAL_FRAMEWORK.md     # 信号定义、证据等级与推断边界
   RESPONSIBLE_AI.md       # 隐私、安全和人工复核原则
   PORTFOLIO_COPY.zh-CN.md # 简历文案与面试讲述稿
+assets/
+  signal-copilot-product.png # 公开演示的完整产品结果截图
 .github/workflows/
   ci.yml                  # 测试、类型检查与构建
   deploy.yml              # GitHub Pages 自动部署

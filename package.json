@@ -2,12 +2,13 @@
   "name": "signal-copilot",
   "private": true,
   "version": "1.0.0",
-  "description": "Bilingual, evidence-first recruiting communication signal analysis portfolio prototype.",
+  "description": "Bilingual recruiting communication signal analysis prototype with evidence tracing and human review.",
   "license": "MIT",
   "keywords": [
     "recruiting",
     "hr-tech",
     "responsible-ai",
+    "explainable-ai",
     "react",
     "typescript"
   ],
